@@ -57,5 +57,6 @@ reference SDK and the guard/hazard corpus are source-available under commercial 
 ## Where it runs in production
 
 This is the methodology behind the verification layer at
-[morpheus.nz/verification](https://morpheus.nz/verification) — 130+ mutation-tested guards and a
-26-entry breakage ledger, measured against the live codebase.
+[morpheus.nz/verification](https://morpheus.nz/verification) — 130+ automated guards, each required
+to be proven to fail on a seeded fault, and a 26-entry breakage ledger, measured against the live
+codebase.
