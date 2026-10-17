@@ -13,7 +13,8 @@ separately.
 ## The problem
 
 In 10 of 12 leading AI coding tools, "done" does not mean "verified" — verification is a hook the
-model can skip. **A green check that never ran is not a pass.**
+model can skip. **A green check that never ran is not a pass.** Full receipts, tool by tool:
+[`verification-gap.md`](verification-gap.md).
 
 ## The five principles
 
