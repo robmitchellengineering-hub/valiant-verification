@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Valiant Verification — the methodology, in plain English</title>
+<meta name="robots" content="noindex, nofollow" />
+<style>
+  :root {
+    --ink: #0A1128;
+    --muted: #475569;
+    --green: #059669;
+    --green-dark: #047857;
+    --line: #e2e8f0;
+    --paper: #ffffff;
+    --soft: #f8fafc;
+    --amber: #fde68a;
+    --amber-bg: #fffbeb;
+    --amber-ink: #78350f;
+  }
+  * { box-sizing: border-box; }
+  @page { size: A4; margin: 0; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+  .kicker {
+    font-size: .8rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--green-dark); margin-bottom: 1rem;
+  }
+  h1 { font-size: 2.4rem; line-height: 1.1; letter-spacing: -.02em; margin: 0 0 1rem; font-weight: 800; }
+  h2 { font-size: 1.35rem; letter-spacing: -.01em; margin: 2.6rem 0 .75rem; font-weight: 800; break-after: avoid; }
+  .lede { font-size: 1.18rem; line-height: 1.55; color: var(--muted); margin: 0 0 2rem; }
+  p { margin: 0 0 1rem; color: #1e293b; }
+  .rule {
+    border-left: 3px solid var(--green);
+    background: var(--soft);
+    padding: 1rem 1.25rem;
+    margin: 0 0 .9rem;
+    border-radius: 0 8px 8px 0;
+    break-inside: avoid;
+  }
+  .rule .tag {
+    display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--green-dark); background: #ecfdf5;
+    border: 1px solid #a7f3d0; border-radius: 999px; padding: .1rem .6rem; margin-right: .5rem;
+  }
+  .rule b { color: var(--ink); }
+  .rule p { margin: .55rem 0 0; }
+  table { width: 100%; border-collapse: collapse; margin: .5rem 0 1.5rem; font-size: .94rem; }
+  th, td { text-align: left; padding: .6rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 700; text-transform: uppercase; font-size: .72rem; letter-spacing: .06em; }
+  td.num { white-space: nowrap; font-weight: 800; color: var(--green-dark); }
+  .honest {
+    margin-top: 2.5rem; border: 1px solid var(--amber); background: var(--amber-bg); color: var(--amber-ink);
+    padding: 1rem 1.25rem; border-radius: 8px; font-size: .95rem; break-inside: avoid;
+  }
+  a { color: var(--green-dark); }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Valiant Verification · Methodology</div>
+  <h1>A way of knowing when “done” means “proven.”</h1>
+  <p class="lede">The hard part of most work isn’t <i>doing</i> it — it’s knowing whether it was done
+  <i>right</i>. This is a simple, universal method for making “done” mean “proven,” not “claimed.” It works
+  the same whether you’re building a house, fixing a car, running a kitchen, or balancing the books.</p>
+
+  <h2>1 · The problem it solves</h2>
+  <p>Most people call a thing “done” the moment the person doing it stops. That’s the wrong signal —
+  stopping and being right are different events.</p>
+  <p>The trap underneath it: <b>a green tick that never actually ran looks exactly like a tick that passed.</b>
+  If nobody checks the checker, then “all good” and “never looked” are indistinguishable. And so the same
+  loop repeats forever:</p>
+  <table>
+    <thead><tr><th>Step</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>Someone does the work.</td></tr>
+      <tr><td class="num">2</td><td>It breaks — somewhere nobody expected.</td></tr>
+      <tr><td class="num">3</td><td>Apologies are made, a fix is applied.</td></tr>
+      <tr><td class="num">4</td><td>The fix breaks something else. Back to step 2.</td></tr>
+    </tbody>
+  </table>
+  <p>That loop is not laziness — it is what happens when nothing is <b>forced to prove itself</b>. The fix is
+  to make the proof structural, not a matter of good intentions.</p>
+
+  <h2>2 · The five rules</h2>
+
+  <div class="rule">
+    <span class="tag">Rule 1</span><b>The checklist is locked.</b>
+    <p>Before you call the job finished, there is a fixed list that <i>must</i> be checked — and nobody gets to
+    skip one because they’re tired or “pretty sure.” If a check is skipped, the job fails. Skipping a check can
+    never be allowed to look like passing one.</p>
+  </div>
+
+  <div class="rule">
+    <span class="tag">Rule 2</span><b>Test the test itself.</b>
+    <p>Every check has to be shown working once, on purpose: cause a real failure and watch the check catch it.
+    Because a smoke detector you’ve never set off is just a plastic box on the ceiling. A check that has never
+    gone “fail” might be doing nothing at all.</p>
+  </div>
+
+  <div class="rule">
+    <span class="tag">Rule 3</span><b>Different eyes.</b>
+    <p>The person who signs off the work is not the person who did it. The electrician does not grade his own
+    wiring; the builder does not inspect his own roof. Maker and checker are two different people, on purpose.</p>
+  </div>
+
+  <div class="rule">
+    <span class="tag">Rule 4</span><b>Mistakes become rules.</b>
+    <p>When something goes wrong, you don’t just fix it and move on. You write down what happened and add a new
+    line to the checklist that would have caught it. From then on that line is on every job — so you never pay
+    for the same expensive mistake twice.</p>
+  </div>
+
+  <div class="rule">
+    <span class="tag">Rule 5</span><b>Show your work.</b>
+    <p>Every result names <i>who</i> did the check, <i>that it actually ran</i>, and <i>what “failed” would have
+    looked like</i>. No anonymous “all good.” No name, no evidence, no definition of failure — then it doesn’t
+    count.</p>
+  </div>
+
+  <h2>3 · What it adds up to</h2>
+  <table>
+    <thead><tr><th>Rule</th><th>The promise it keeps</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>Nothing slips through unexamined.</td></tr>
+      <tr><td class="num">2</td><td>Every check genuinely works — proven, not assumed.</td></tr>
+      <tr><td class="num">3</td><td>Nobody marks their own homework.</td></tr>
+      <tr><td class="num">4</td><td>The same mistake never happens twice.</td></tr>
+      <tr><td class="num">5</td><td>Every “done” comes with its receipt.</td></tr>
+    </tbody>
+  </table>
+  <p>Together they change one sentence: instead of <b>“done means I stopped,”</b> you get <b>“done means it’s
+  proven.”</b></p>
+
+  <h2>4 · Where it applies</h2>
+  <p>The same five moves fit any trade where the word “done” is supposed to carry weight:</p>
+  <table>
+    <thead><tr><th>Trade</th><th>What “proven” looks like there</th></tr></thead>
+    <tbody>
+      <tr><td>Building a house</td><td>Wiring, plumbing, roof and foundations each signed off — by someone other than the person who did them.</td></tr>
+      <tr><td>Fixing a car</td><td>The fault is reproduced before the fix, and re-checked after — not “should be right now.”</td></tr>
+      <tr><td>Running a kitchen</td><td>A food-safety routine that gets spot-checked, and any incident adds a permanent new line to it.</td></tr>
+      <tr><td>A hospital checklist</td><td>A surgical team that reads the list aloud, every time, no exceptions — because a skipped step is the failure.</td></tr>
+      <tr><td>Balancing the books</td><td>Numbers that reconcile to the penny, with the person who checked named on the page.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="honest"><strong>Said plainly:</strong> this method does not make the work easier — it makes the
+  <i>claim</i> trustworthy. It is the difference between “we’re pretty confident it’s right” and “here is the
+  receipt showing it was checked, that the check works, and who checked it.”</div>
+
+  <footer>
+    <p>This is the methodology behind Valiant Verification — a trust layer for work that must be proven before
+    it is believed. This document is an internal explainer; it is not published on the site.</p>
+  </footer>
+
+</div>
+</body>
+</html>
