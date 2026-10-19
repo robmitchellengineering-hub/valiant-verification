@@ -1,0 +1,77 @@
+{
+  "name": "valiant-verification",
+  "title": "Valiant Verification — today",
+  "tag": "Make done mean verified",
+  "mark": "VV",
+  "lede": "The open specification for <em>structural code verification</em> — named gates and mutation-tested guards — backed today by <b>130+</b> guards in production, each required to prove it can fail.",
+  "sub": "The spec in one read: what a gate enforces, what's proven, and what's still specified-only.",
+  "shots": [],
+  "nums": [
+    {
+      "value": "130+",
+      "label": "automated guards in production",
+      "sub": "morpheus.nz/verification — each required to fail on a seeded fault"
+    },
+    {
+      "value": "26",
+      "label": "breakage-ledger entries",
+      "sub": "H-numbered hazards, measured against the live codebase"
+    },
+    {
+      "value": "10 of 12",
+      "label": "AI coding tools leave verification optional",
+      "sub": "verification-gap.md, cited to vendor docs"
+    }
+  ],
+  "real": [
+    {
+      "what": "Open spec (spec.md)",
+      "evidence": "The contract in full — five principles, named-gate and mutation-test contracts, certification. Version 0.1 (draft), Apache-2.0."
+    },
+    {
+      "what": "Named-gate contract",
+      "evidence": "Required checks matched by name; a skipped or neutral result is a fail, never a silent pass. spec.md §3 + example/demo.mjs."
+    },
+    {
+      "what": "Mutation-test contract",
+      "evidence": "A guard is proven only by a recorded run where a seeded fault made it go red. spec.md §4; demo.mjs seeds a 'ghost' import and asserts red."
+    },
+    {
+      "what": "Runnable reference example",
+      "evidence": "Dependency-free example/demo.mjs showing both contracts; `node example/demo.mjs` exits 0 when the discipline holds."
+    },
+    {
+      "what": "Five principles",
+      "evidence": "Structural gate, prove-the-check-can-fail, separate reviewer, failures-become-memory, provenance. README + spec.md §2."
+    },
+    {
+      "what": "The verification gap, with receipts",
+      "evidence": "verification-gap.md surveys 12 tools against primary vendor docs; only Factory and Amp gate verification, none mutation-test."
+    },
+    {
+      "what": "Production numbers",
+      "evidence": "130+ guards each required to fail on a seeded fault, and a 26-entry breakage ledger, measured against the live morpheus.nz codebase."
+    }
+  ],
+  "not_built": [
+    {
+      "what": "Reference SDK",
+      "status": "Not in this repo — source-available under commercial terms (separate valiant-verification-sdk)."
+    },
+    {
+      "what": "Guard/hazard corpus",
+      "status": "The 130+ guards and the H-numbered breakage ledger live in the private corpus, not published here."
+    },
+    {
+      "what": "Certification program",
+      "status": "Specified (§5 conformance audit + badge scope) but no runnable audit tooling ships in this repo."
+    },
+    {
+      "what": "Unproven-guard backlog closure",
+      "status": "Specified as a ratchet (new unproven guards refused); no public proven-vs-unproven count is published here."
+    }
+  ],
+  "callout": "A gate enforces only that a named check ran and reported a non-neutral pass — it does not make the check correct. Correctness is the mutation test's job: a guard that has never gone red is indistinguishable from one that does nothing, so unproven guards are counted separately and refused until proven.",
+  "where": "Toward a version-scoped, annual conformance audit that earns the Valiant Verification mark, with the unproven-guard backlog closed to zero and the SDK and corpus published for implementers.",
+  "foot": "Source: github.com/robmitchellengineering-hub/valiant-verification (README.md, spec.md, verification-gap.md). Numbers: README 'Where it runs in production' — 130+ guards, 26-entry ledger; verification-gap.md — 10 of 12 tools."
+}

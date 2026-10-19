@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valiant Verification — today</title>
+<style>
+:root { --green:#00e07f; --black:#07090c; --panel:#0c1118; --line:#1b2530;
+  --pink:#ff2fd6; --cyan:#06b6d4; --blue:#4d6bfe; --mut:#8b95a7; --text:#e6edf3; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--black); color:var(--text);
+  font:16px/1.6 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+.wrap { max-width:980px; margin:0 auto; padding:48px 24px 64px; }
+h1 { font-size:34px; margin:0 0 4px; color:#fff; letter-spacing:.5px; }
+.tag { color:var(--green); font-weight:600; margin:0 0 28px; }
+.lede { font-size:20px; line-height:1.5; color:#fff; margin:0 0 10px; }
+.lede em { color:var(--green); font-style:normal; }
+.sub { color:var(--mut); margin:0 0 36px; }
+h2 { font-size:13px; text-transform:uppercase; letter-spacing:2px; color:var(--green); margin:42px 0 14px; }
+.shots { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
+.shot { background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+.shot img { width:100%; display:block; }
+.shot .cap { padding:10px 14px; font-size:13px; color:var(--mut); border-top:1px solid var(--line); }
+.shot .cap b { color:var(--text); }
+.nums { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
+.num { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px; }
+.num .v { font-size:30px; color:var(--green); font-weight:700; }
+.num .l { font-size:14px; color:var(--text); margin-top:2px; }
+.num .s { font-size:12px; color:var(--mut); margin-top:6px; }
+table { border-collapse:collapse; width:100%; font-size:14px; }
+th,td { text-align:left; padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { color:var(--green); text-transform:uppercase; letter-spacing:1px; font-size:11px; }
+.ok { color:var(--green); } .no { color:var(--mut); }
+.callout { background:var(--panel); border-left:3px solid var(--green); border-radius:8px; padding:16px 18px; margin:18px 0; font-size:15px; }
+.callout b { color:#fff; }
+.foot { margin-top:48px; padding-top:18px; border-top:1px solid var(--line); color:var(--mut); font-size:13px; }
+a { color:var(--cyan); text-decoration:none; }
+code { background:#111827; padding:1px 6px; border-radius:5px; font-size:13px; color:#cdd9e5; }
+.brand { display:flex; align-items:center; gap:14px; margin-bottom:26px; }
+.brand .mk { width:56px; height:56px; border-radius:10px; background:linear-gradient(135deg,var(--green),var(--cyan));
+  display:flex; align-items:center; justify-content:center; font-weight:800; font-size:22px; color:#04120a; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="mk">VV</div>
+    <div>
+      <h1 style="font-size:30px; margin:0">Valiant Verification — today</h1>
+      <p class="tag" style="margin:0">Make done mean verified</p>
+    </div>
+  </div>
+  <p class="lede">The open specification for <em>structural code verification</em> — named gates and mutation-tested guards — backed today by <b>130+</b> guards in production, each required to prove it can fail.</p>
+  <p class="sub">The spec in one read: what a gate enforces, what's proven, and what's still specified-only.</p>
+  <h2>Live</h2>
+  <div class="shots"></div>
+  <h2>Measured</h2>
+  <div class="nums"><div class="num"><div class="v">130+</div><div class="l">automated guards in production</div><div class="s">morpheus.nz/verification — each required to fail on a seeded fault</div></div>
+<div class="num"><div class="v">26</div><div class="l">breakage-ledger entries</div><div class="s">H-numbered hazards, measured against the live codebase</div></div>
+<div class="num"><div class="v">10 of 12</div><div class="l">AI coding tools leave verification optional</div><div class="s">verification-gap.md, cited to vendor docs</div></div></div>
+  <h2>Real now</h2>
+  <table><tr><th>What</th><th>Evidence</th></tr><tr><td class="ok">Open spec (spec.md)</td><td>The contract in full — five principles, named-gate and mutation-test contracts, certification. Version 0.1 (draft), Apache-2.0.</td></tr>
+<tr><td class="ok">Named-gate contract</td><td>Required checks matched by name; a skipped or neutral result is a fail, never a silent pass. spec.md §3 + example/demo.mjs.</td></tr>
+<tr><td class="ok">Mutation-test contract</td><td>A guard is proven only by a recorded run where a seeded fault made it go red. spec.md §4; demo.mjs seeds a 'ghost' import and asserts red.</td></tr>
+<tr><td class="ok">Runnable reference example</td><td>Dependency-free example/demo.mjs showing both contracts; `node example/demo.mjs` exits 0 when the discipline holds.</td></tr>
+<tr><td class="ok">Five principles</td><td>Structural gate, prove-the-check-can-fail, separate reviewer, failures-become-memory, provenance. README + spec.md §2.</td></tr>
+<tr><td class="ok">The verification gap, with receipts</td><td>verification-gap.md surveys 12 tools against primary vendor docs; only Factory and Amp gate verification, none mutation-test.</td></tr>
+<tr><td class="ok">Production numbers</td><td>130+ guards each required to fail on a seeded fault, and a 26-entry breakage ledger, measured against the live morpheus.nz codebase.</td></tr></table>
+  <h2>Not built yet</h2>
+  <table><tr><th>What</th><th>Status</th></tr><tr><td class="no">Reference SDK</td><td>Not in this repo — source-available under commercial terms (separate valiant-verification-sdk).</td></tr>
+<tr><td class="no">Guard/hazard corpus</td><td>The 130+ guards and the H-numbered breakage ledger live in the private corpus, not published here.</td></tr>
+<tr><td class="no">Certification program</td><td>Specified (§5 conformance audit + badge scope) but no runnable audit tooling ships in this repo.</td></tr>
+<tr><td class="no">Unproven-guard backlog closure</td><td>Specified as a ratchet (new unproven guards refused); no public proven-vs-unproven count is published here.</td></tr></table>
+  <div class="callout">A gate enforces only that a named check ran and reported a non-neutral pass — it does not make the check correct. Correctness is the mutation test's job: a guard that has never gone red is indistinguishable from one that does nothing, so unproven guards are counted separately and refused until proven.</div>
+  <h2>Where it's going</h2>
+  <p>Toward a version-scoped, annual conformance audit that earns the Valiant Verification mark, with the unproven-guard backlog closed to zero and the SDK and corpus published for implementers.</p>
+  <div class="foot">Source: github.com/robmitchellengineering-hub/valiant-verification (README.md, spec.md, verification-gap.md). Numbers: README 'Where it runs in production' — 130+ guards, 26-entry ledger; verification-gap.md — 10 of 12 tools. ·  · main <code>uncommitted</code>.</div>
+</div>
+</body>
+</html>
