@@ -1,2 +1,5 @@
 node_modules/
 .DS_Store
+
+# vv-generated gate report (build output, not source)
+**/.vv/report.json
