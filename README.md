@@ -48,14 +48,12 @@ check that is merely present.
 
 - `spec.md` — the specification.
 - `example/` — a minimal, dependency-free reference implementation of the contracts.
-- `sdk/` — the reference SDK (`vv`), source-available under commercial terms.
-- `LICENSE` — Apache-2.0 (covers the spec, the example and the survey only).
+- `LICENSE` — Apache-2.0 (covers the spec and the example).
 
 ## License
 
-The specification, reference example and survey are Apache-2.0 — free to read, fork, and implement.
-The reference SDK (`sdk/`) and the guard/hazard corpus are source-available under commercial terms;
-see `sdk/LICENSE.md`.
+The specification and reference example are Apache-2.0 — free to read, fork, and implement. The
+reference SDK and the guard/hazard corpus are source-available under commercial terms.
 
 ## Where it runs in production
 
